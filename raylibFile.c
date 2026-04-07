@@ -11,14 +11,13 @@ typedef struct {
 
 const float Height = GetMonitorHeight(0);
 const float Width = GetMonitorWidth(0);
-int TextSize = 50;
 float VertVel = 0;
 float HoriVel = 0;
 actor Player = {{0,0}, 60};
 float Damping = 0.9;
 Camera2D camera = {0};
 camera.zoom = 1.0f;
-bool showCords = 1;
+bool showCords = 0;
 InitWindow(Width, Height, "Test window");
 SetTargetFPS(60);
 while (!WindowShouldClose()){
@@ -44,8 +43,6 @@ while (!WindowShouldClose()){
 		if (showCords){ showCords = false; }
 		else {showCords = true;}
 	}
-	snprintf(StrPosX,sizeof(StrPosX),"x: %.2f",Player.postion.x);
-	snprintf(StrPosY,sizeof(StrPosY),"y: %.2f",Player.postion.y);
 	// Drawing to the screen
 	BeginDrawing();
 		ClearBackground(RAYWHITE);
@@ -55,6 +52,8 @@ while (!WindowShouldClose()){
 		EndMode2D();
 
 		if (showCords){
+			snprintf(StrPosX,sizeof(StrPosX),"x: %.2f",Player.postion.x);
+			snprintf(StrPosY,sizeof(StrPosY),"y: %.2f",Player.postion.y);
 			DrawText(StrPosX,10,10,50,BLACK);
 			DrawText(StrPosY,10,60,50,BLACK);
 		}
