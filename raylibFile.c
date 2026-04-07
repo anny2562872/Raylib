@@ -1,4 +1,6 @@
 #include <raylib.h> 
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h" 
 #include <stdio.h> 
 #include <string.h>
 
@@ -37,10 +39,7 @@ while (!WindowShouldClose()){
 	VertVel *= Damping;
 	HoriVel *= Damping;
 	//Show cords when tab is pressed
-	if (IsKeyPressed(KEY_TAB)){
-		if (showCords){ showCords = false; }
-		else {showCords = true;}
-	}
+	if (IsKeyPressed(KEY_TAB)){ showCords = !showCords; }
 	// Drawing to the screen
 	BeginDrawing();
 		ClearBackground(RAYWHITE);
@@ -57,6 +56,8 @@ while (!WindowShouldClose()){
 			DrawText(StrPosX,10,10,50,BLACK);
 			DrawText(StrPosY,10,60,50,BLACK);
 		}
+		GuiToggle((Rectangle){GetMonitorWidth(0)-120-10,10,120,50},TextFormat("Show Cordinates"), &showCords);
+
 	EndDrawing();
 } // Runtime
 
