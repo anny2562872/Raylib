@@ -37,8 +37,6 @@ while (!WindowShouldClose()){
 	VertVel *= Damping;
 	HoriVel *= Damping;
 	//Show cords when tab is pressed
-	char StrPosX[128];
-	char StrPosY[128];
 	if (IsKeyPressed(KEY_TAB)){
 		if (showCords){ showCords = false; }
 		else {showCords = true;}
@@ -52,6 +50,8 @@ while (!WindowShouldClose()){
 		EndMode2D();
 
 		if (showCords){
+			char StrPosX[128];
+			char StrPosY[128];
 			snprintf(StrPosX,sizeof(StrPosX),"x: %.2f",Player.postion.x);
 			snprintf(StrPosY,sizeof(StrPosY),"y: %.2f",Player.postion.y);
 			DrawText(StrPosX,10,10,50,BLACK);
