@@ -9,6 +9,7 @@ all: main
 main: raylibFile.c
 	$(CXX) -o ./bin/raylibFile raylibFile.c $(CXXFLAGS) 
 # A 'clean' rule to remove the executable
-clean:
-	rm -f ./bin/raylibFile
-
+git:
+	git add .
+	git commit
+	git push
