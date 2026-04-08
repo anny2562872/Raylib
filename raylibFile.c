@@ -16,12 +16,13 @@ const float Width = GetMonitorWidth(0);
 float VertVel = 0;
 float HoriVel = 0;
 actor Player = {{0,0}, 60};
-float stamina = 0;
+float stamina;
 float Damping = 0.9;
 Camera2D camera = {0};
 camera.zoom = 1.0f;
-bool showCords = 0;
+bool isDebug = 0;
 bool usingSprint;
+
 InitWindow(Width, Height, "Test window");
 SetTargetFPS(60);
 while (!WindowShouldClose()){
@@ -51,7 +52,7 @@ while (!WindowShouldClose()){
 	if ((stamina<5) & !usingSprint){stamina += 0.1;}
 	else if((stamina<25) & !usingSprint){stamina += 0.25;}
 	//Show cords when tab is pressed
-	if (IsKeyPressed(KEY_TAB)){ showCords = !showCords; }
+	if (IsKeyPressed(KEY_TAB)){ isDebug = !isDebug; }
 	// Drawing to the screen
 	BeginDrawing();
 		ClearBackground(RAYWHITE);
@@ -60,7 +61,7 @@ while (!WindowShouldClose()){
 			DrawRectangle(Player.postion.x,Player.postion.y,50,50,RED);
 		EndMode2D();
 
-		if (showCords){
+		if (isDebug){
 			char StrPosX[128];
 			char StrPosY[128];
 			char StrSpeed[128];
@@ -74,7 +75,7 @@ while (!WindowShouldClose()){
 			DrawText(StrPosY,10,60,50,BLACK);
 			DrawText(StrPosX,10,10,50,BLACK);
 		}
-		GuiToggle((Rectangle){GetMonitorWidth(0)-120-10,10,120,50},TextFormat("Show Cordinates"), &showCords);
+		GuiToggle((Rectangle){GetMonitorWidth(0)-120-10,10,120,50},TextFormat("Show Debug Info"), &isDebug);
 
 	EndDrawing();
 } // Runtime
