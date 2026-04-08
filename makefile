@@ -1,6 +1,6 @@
 # Define variables for the compiler and flags
 CXX = gcc
-CXXFLAGS = -lraylib -lX11 -lGL -lm -ldl -lrt 
+CXXFLAGS = -lraylib -lX11 -lGL -lm -ldl -lrt -Wall -Werror
 
 # The first target is the default one run by 'make'
 all: main
